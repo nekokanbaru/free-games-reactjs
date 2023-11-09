@@ -1,7 +1,10 @@
-export default function Game(props)
+import React from "react";
+import { useGlobalContext } from "../context";
+
+export default function Game()
 {
-    const gameList = props.gameList
-    console.log(props.gameList)
+    const {gameList} = useGlobalContext()
+    console.log(gameList)
 
     return <div className="game-container">
         {gameList.slice(0, 6).map((item) => {
