@@ -1,0 +1,146 @@
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/fonts/Roboto-Regular.ttf);
+}
+
+:root {
+  --bg-primary: #161a1e;
+  --color-primary: #fbfbfb;
+  --color-highlight:#e58e27;
+  --color-secondary:#9a9a9a;
+  --font-primary: Roboto;
+}
+
+#root {
+  margin: 0;
+  padding:0;
+  max-width: none;
+}
+
+body, html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--color-secondary);
+  font-family: var(--font-primary);
+  margin: 0 auto;
+  width:90%;
+}
+
+/* Navbar starts */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list > ul{
+  list-style-type: none;
+  display: flex;
+  gap:30px;
+}
+
+.list img {
+  width:30px;
+  height: 30px;
+  fill:var(--color-primary);
+}
+/* Navbar ends */
+
+/* game store starts */
+.games-container {
+  display:flex;
+  margin-top:3em;
+  width: 100%;
+}
+
+.sidebar {
+  background-color:yellow;
+  flex-basis:20rem;
+  flex-grow: 1;
+}
+
+.games {
+  background-color: var(--bg-primary);
+  flex-basis:0;
+  flex-grow: 999;
+}
+
+/* .game-container {
+  display:flex;
+  justify-content: space-between;
+  flex-wrap:wrap;
+  row-gap:40px;
+  padding:50px 30px;
+} */
+
+.game-container {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  padding:50px 30px;
+  row-gap:40px;
+  column-gap:50px;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-color:#6b6c6d29; */
+   background-color:#49352139;
+  background: linear-gradient(.25turn, #6b6c6d29 60%, #74553639);
+  padding: 10px 5px;
+  text-align: left;
+  border-radius: 5%;
+  color:var(--color-primary);
+  height:500px;
+}
+
+.title {
+  width: 90%;
+}
+
+.title > h2 {
+  line-height: 1.5rem;
+}
+
+.game > img {
+  width: 90%;
+  height: 200px;
+  border-radius: 10px;
+  object-fit:cover;
+  align-self: center;
+}
+
+.game > .title > .description {
+  color:var(--color-secondary);
+}
+
+.game-info-btn {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap:20px;
+  color:var(--color-highlight)
+}
+
+.game-info-btn > button {
+  width: 90%;
+  border: none;
+  background-color: var(--color-highlight);
+  padding:5px 40px;
+  border-radius:50px;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.game-info-btn > button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+/* game store ends */
