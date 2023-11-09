@@ -9,7 +9,7 @@ export default function Game()
     return <div className="game-container">
         {gameList.slice(0, 6).map((item) => {
             const {id, title, platform, genre, thumbnail, shortDesc} = item;
-            return <div className="game">
+            return <div className="game" key={id}>
                 <img src={thumbnail} alt={title} />
                 <div className="title">
                     <h2>{title}</h2>
