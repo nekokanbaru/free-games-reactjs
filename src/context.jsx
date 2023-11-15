@@ -17,13 +17,14 @@ const AppProvider = ({children}) => {
     const [filteredGameList, setFilteredGameList] = useState([])
     const [isFiltered, setIsFiltered] = useState(false)
     const [categoryList, setCategoryList] = useState("mmorpg")
+    const [platform, setPlatform] = useState("all")
 
     const filterOptions = {
         method: 'GET',
     url: 'https://free-to-play-games-database.p.rapidapi.com/api/filter',
      params: {
         tag: categoryList.length > 0 ? categoryList : 'mmorpg',
-        platform: 'pc'
+        platform: platform
         },
      headers: {
         'X-RapidAPI-Key': '3b5d4c36b8mshd5546e81fd09131p150cfdjsn8a485f973c61',
@@ -55,7 +56,7 @@ const AppProvider = ({children}) => {
     const filterGames = useCallback(async () => {
         setIsFiltered(true)
         try{
-            const response = await fetch(`${filterOptions.url}?tag=${filterOptions.params.tag}`, filterOptions)
+            const response = await fetch(`${filterOptions.url}?tag=${filterOptions.params.tag}&platform=${filterOptions.params.platform}`, filterOptions)
             const data = await response.json()
             if(data.length > 0) {
                 const gamesList = data.map((item) => {
@@ -79,9 +80,9 @@ const AppProvider = ({children}) => {
 
     useEffect(() => {
         filterGames()
-    }, [categoryList])
+    }, [categoryList, platform])
 
-    return <AppContext.Provider value={{gameList, filteredGameList, isFiltered, setCategoryList}}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{gameList, filteredGameList, isFiltered, setCategoryList, setPlatform}}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContext = () => {
