@@ -6,7 +6,7 @@ import Pagination from "./Pagination";
 
 export default function Game()
 {
-    const {gameList, isFiltered, filteredGameList, isLoading, isLoadingFilter} = useGlobalContext()
+    const {isFiltered, filteredGameList, isLoading, isLoadingFilter} = useGlobalContext()
     const [currentPage, setCurrentPage] = useState(1)
     const [gamesPerPage, setGamesPerPage] = useState(6)
 
@@ -56,27 +56,6 @@ export default function Game()
                     <h2>No games matching the selected categories found </h2>
                 </div>
             }
-        }
-
-        else {
-            return <div className="game-container">
-                {gameList.slice(firstGameIndex, lastGameIndex).map((item) => {
-                    const {id, title, platform, genre, thumbnail, shortDesc} = item;
-                    return <div className="game" key={id}>
-                        <img src={thumbnail} alt={title} />
-                        <div className="title">
-                            <h2>{title}</h2>
-                            <p>{platform}</p>
-                            <p className="description">{shortDesc}</p>
-                        </div>
-                        
-                        <div className="game-info-btn">
-                            <h3>{genre}</h3>
-                            <button>More details</button>
-                        </div>      
-                    </div>
-                })}
-            </div>
         }
     }
 }
