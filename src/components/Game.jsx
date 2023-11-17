@@ -48,6 +48,7 @@ export default function Game()
                             </div>   
                         })}
                     </div>
+                    <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>
                 </div>)
             }
             else {

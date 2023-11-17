@@ -1,16 +1,48 @@
+import { useRef, useEffect } from "react"
+
 export default function Pagination({totalPosts, postsPerPage, setCurrentPage, currentPage}) {
 
     let pages = []
+    const pageNumber = useRef()
     
     for(let i = 1; i <= Math.ceil(totalPosts/postsPerPage); i++){
         pages.push(i)
     }
 
+    const nextPage = () => {
+        if(currentPage < pages.length){
+            setCurrentPage(currentPage + 1)
+        }
+    }
+
+    const prevPage = () => {
+        if(currentPage > 1){
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
+    const changePage = () => {
+        setCurrentPage(parseInt(pageNumber.current.value))
+    }
+
+    const setDefaultPage = () => { 
+        if(pageNumber.current.value == "")//if the user deletes the page number and leaves the input
+            setCurrentPage(1)
+        else if(pageNumber.current.value > pages.length)
+            setCurrentPage(pages.length)
+    }
+
+    useEffect(() => {
+        pageNumber.current.value = currentPage
+    }, [currentPage])
+
     return <>
     <div className="pages-wrapper">
-        {pages.map((page, index) => {
-            return <button className={currentPage === page ? 'page-btn active':'page-btn'} onClick={() => setCurrentPage(page)} key={index}>{page}</button>
-        })}
+        <button className="page-btn" onClick={() => setCurrentPage(1)}>First page</button>
+        <button className="page-btn" onClick={() => prevPage()}>Previous</button>
+        <span><input type="number" name="pageNumber" id="pageNumber" onChange={changePage} onBlur={setDefaultPage} defaultValue="1" min="1" max={pages.length} ref={pageNumber}/> of {pages.length}</span>
+        <button className="page-btn" onClick={() => nextPage()}>Next</button>
+        <button className="page-btn" onClick={() => setCurrentPage(pages.length)}>Last page</button>
     </div>
     </>
 }
