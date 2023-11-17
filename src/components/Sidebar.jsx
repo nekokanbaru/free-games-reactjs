@@ -5,8 +5,9 @@ export default function Sidebar()
 {
     const {gameList, handleSubmit, setCategoryList, setPlatform} = useGlobalContext()
     //had to hard code the values because not all categories that exist inside the gameList object are valid categories for the API call
-    const categoriesSite = "MMORPG, shooter, strategy, MOBA, racing, sports, social, sandbox, open-world, survival, PVP, PVE, pixel, voxel, zombie, turn-based, first-person, third-Person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, card, battle-royale, MMO, MMOFPS, MMOTPS, 3D, 2D, anime, fantasy, sci-fi, fighting, action-rpg, action, military, martial-arts, flight, low-spec, tower-defense, horror, MMORTS"
-    const categories = categoriesSite.split(', ');
+    const categoriesSite = "MMORPG, shooter, strategy, MOBA, racing, sports, sandbox, survival, turn-based, card, fighting, horror, action, tower-defense,social, open-world, PVP, PVE, pixel, voxel, zombie, first-person, third-Person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, battle-royale, MMO, MMOFPS, MMOTPS, 3D, 2D, anime, fantasy, sci-fi, action-rpg,  military, martial-arts, flight, low-spec, MMORTS"
+    const [isShortened, setIsShortened] = useState(false)
+    const [categories, setCategories] = useState(categoriesSite.split(', ').slice(0, 13))
     const platforms = ['PC', 'Browser', 'All']
     const categoryRef = useRef()
     const platformRef = useRef()
@@ -35,6 +36,11 @@ export default function Sidebar()
         return item.charAt(0).toUpperCase() + item.slice(1);
     }
 
+    const toggleShowMore = () => {
+        setIsShortened(!isShortened)
+        isShortened ? setCategories(categories.slice(0, 13)) : setCategories(categoriesSite.split(', '))
+    }
+
     return <div className="sidebar">
         <h2>Categories</h2>
         
@@ -46,8 +52,13 @@ export default function Sidebar()
                 <label htmlFor={item}>{Capitalize(item)}</label>
             </div>
             </>
-        })}
+        })}       
         </div>
+        <a className="toggleCategories-btn" onClick={toggleShowMore}>
+            {isShortened ? 
+            <span><img src="../src/assets/icons/arrow-up-solid.svg"></img>show less</span> : 
+            <span><img src="../src/assets/icons/arrow-down-solid.svg"></img>show more</span>}
+        </a>
 
         <h2>Platforms</h2>
         <div className="platform-wrapper"  ref={platformRef}>

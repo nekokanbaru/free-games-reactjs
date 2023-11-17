@@ -217,4 +217,26 @@ body {
   display: block;
 }
 
+.toggleCategories-btn {
+  color:var(--color-secondary);
+  cursor: pointer;
+}
+
+.toggleCategories-btn img {
+  width: 15px;
+}
+
+.toggleCategories-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  column-gap: 5px;
+  width: 100%;
+  opacity: 0.5;
+}
+
+.toggleCategories-btn span:hover {
+  opacity: 0.8;
+}
+
 /* sidebar ends */
