@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Sidebar() 
 {
-    const {setCategoryList, setPlatform} = useGlobalContext()
+    const {setCategoryList, setPlatform, isLoading} = useGlobalContext()
     //had to hard code the values because not all categories that exist inside the gameList object are valid categories for the API call
     const categoriesSite = "MMORPG, shooter, strategy, MOBA, racing, sports, sandbox, survival, turn-based, card, fighting, horror, action, tower-defense,social, open-world, PVP, PVE, pixel, voxel, zombie, first-person, third-Person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, battle-royale, MMO, MMOFPS, MMOTPS, 3D, 2D, anime, fantasy, sci-fi, action-rpg,  military, martial-arts, flight, low-spec, MMORTS"
     const [isShortened, setIsShortened] = useState(false)
@@ -11,7 +11,13 @@ export default function Sidebar()
     const platforms = ['PC', 'Browser', 'All']
     const categoryRef = useRef()
     const platformRef = useRef()
+
+    useEffect(() => {
+        if(platformRef.current)
+        platformRef.current.children[2].children[0].checked = true //make the platforms:"All" checked by default
+    }, [isLoading])
     
+    if(!isLoading){
     //iterate over categories and check which ones are checked
     const updateCheckedCategories = () => {
         let categoryArray = [];
@@ -41,10 +47,7 @@ export default function Sidebar()
         isShortened ? setCategories(categories.slice(0, 13)) : setCategories(categoriesSite.split(', '))
     }
 
-    useEffect(() => {
-        platformRef.current.children[2].children[0].checked = true //make the platforms:"All" checked by default
-    }, [])
-
+    
     return <div className="sidebar">
         <h2>Categories</h2>
         
@@ -76,4 +79,5 @@ export default function Sidebar()
         })}
         </div>
     </div>
+    }
 }
