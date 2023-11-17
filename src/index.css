@@ -331,3 +331,30 @@ body {
 }
 
 /* Loading animation ends */
+
+/* pagination starts */
+
+.pages-wrapper {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.page-btn {
+  background-color: var(--bg-primary-light);
+  border: none;
+  padding:0.5em 1em;
+  color:var(--color-secondary);
+}
+
+.page-btn.active {
+  background-color: var(--color-highlight);
+  color:var(--bg-primary);
+}
+
+.page-btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* pagination ends */
