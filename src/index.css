@@ -358,7 +358,7 @@ body {
   opacity: 0.8;
 }
 
-#pageNumber {
+.pageNumber {
   background-color: transparent;
   border: none;
   color:var(--color-secondary);
@@ -368,7 +368,7 @@ body {
   margin-right: 1em;
 }
 
-#pageNumber:focus-visible {
+.pageNumber:focus-visible {
   outline:var(--color-highlight) solid 1px;
   border-radius: 2px;
 }

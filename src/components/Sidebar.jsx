@@ -21,7 +21,7 @@ export default function Sidebar()
     //iterate over categories and check which ones are checked
     const updateCheckedCategories = () => {
         let categoryArray = [];
-        Array.from(categoryRef.current.children).map((item) => {
+        Array.from(categoryRef.current.children).map((item, index) => {
             if(item.children[0].checked){
                 categoryArray.push(item.children[0].value.replace(' ', '-').toLowerCase())
             }
@@ -52,13 +52,13 @@ export default function Sidebar()
         <h2>Categories</h2>
         
         <div className="category-wrapper" ref={categoryRef}>
-        {categories.map((item) => {
-            return <>
-            <div className="sidebar-category">
-                <input onChange={updateCheckedCategories} type="checkbox" value={item} id={item}/>
-                <label htmlFor={item}>{Capitalize(item)}</label>
+        {categories.map((item, index) => {
+            return (
+            <div className="sidebar-category" key={index}>
+                <input onChange={updateCheckedCategories} type="checkbox" value={item} id={index}/>
+                <label htmlFor={index}>{Capitalize(item)}</label>
             </div>
-            </>
+            )
         })}       
         </div>
         <a className="toggleCategories-btn" onClick={toggleShowMore}>
@@ -69,9 +69,9 @@ export default function Sidebar()
 
         <h2>Platforms</h2>
         <div className="platform-wrapper"  ref={platformRef}>
-        {platforms.map((item) => {
+        {platforms.map((item, index) => {
             return <>
-            <div className="sidebar-category">
+            <div className="sidebar-category" key={index}>
                 <input onChange={updateCheckedPlatforms} type="radio" value={item} id={item} name='platform'/>
                 <label htmlFor={item}>{item}</label>
             </div>

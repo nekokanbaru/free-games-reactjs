@@ -40,7 +40,7 @@ export default function Pagination({totalPosts, postsPerPage, setCurrentPage, cu
     <div className="pages-wrapper">
         <button className="page-btn" onClick={() => setCurrentPage(1)}>First page</button>
         <button className="page-btn" onClick={() => prevPage()}>Previous</button>
-        <span><input type="number" name="pageNumber" id="pageNumber" onChange={changePage} onBlur={setDefaultPage} defaultValue="1" min="1" max={pages.length} ref={pageNumber}/> of {pages.length}</span>
+        <span><input type="number" name="pageNumber" className="pageNumber" onChange={changePage} onBlur={setDefaultPage} defaultValue="1" min="1" max={pages.length} ref={pageNumber}/> of {pages.length}</span>
         <button className="page-btn" onClick={() => nextPage()}>Next</button>
         <button className="page-btn" onClick={() => setCurrentPage(pages.length)}>Last page</button>
     </div>
