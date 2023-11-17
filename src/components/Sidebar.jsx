@@ -1,9 +1,9 @@
 import { useGlobalContext } from "../context"
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Sidebar() 
 {
-    const {gameList, handleSubmit, setCategoryList, setPlatform} = useGlobalContext()
+    const {setCategoryList, setPlatform} = useGlobalContext()
     //had to hard code the values because not all categories that exist inside the gameList object are valid categories for the API call
     const categoriesSite = "MMORPG, shooter, strategy, MOBA, racing, sports, sandbox, survival, turn-based, card, fighting, horror, action, tower-defense,social, open-world, PVP, PVE, pixel, voxel, zombie, first-person, third-Person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, battle-royale, MMO, MMOFPS, MMOTPS, 3D, 2D, anime, fantasy, sci-fi, action-rpg,  military, martial-arts, flight, low-spec, MMORTS"
     const [isShortened, setIsShortened] = useState(false)
@@ -40,6 +40,10 @@ export default function Sidebar()
         setIsShortened(!isShortened)
         isShortened ? setCategories(categories.slice(0, 13)) : setCategories(categoriesSite.split(', '))
     }
+
+    useEffect(() => {
+        platformRef.current.children[2].children[0].checked = true //make the platforms:"All" checked by default
+    }, [])
 
     return <div className="sidebar">
         <h2>Categories</h2>
