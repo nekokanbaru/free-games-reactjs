@@ -18,6 +18,8 @@ const AppProvider = ({children}) => {
     const [isFiltered, setIsFiltered] = useState(false)
     const [categoryList, setCategoryList] = useState("mmorpg")
     const [platform, setPlatform] = useState("all")
+    const [isLoading, setIsLoading] = useState(false)
+    const [isLoadingFilter, setIsLoadingFilter] = useState(false)
 
     const filterOptions = {
         method: 'GET',
@@ -34,6 +36,7 @@ const AppProvider = ({children}) => {
     }
 
     const fetchGames = useCallback(async () => {
+        setIsLoading(true)
         try{
             const response = await fetch(url, options)
             const data = await response.json()
@@ -42,10 +45,12 @@ const AppProvider = ({children}) => {
                     const {id, title, platform, genre, thumbnail, short_description} = item
                     return {id, title, platform, genre, thumbnail, shortDesc:short_description}
                 })
-                setGameList(gamesList)     
+                setGameList(gamesList)
+                setIsLoading(false)    
             }
             else {
                 setGameList([])
+                setIsLoading(false)
             }
         }
         catch(error){
@@ -55,6 +60,7 @@ const AppProvider = ({children}) => {
 
     const filterGames = useCallback(async () => {
         setIsFiltered(true)
+        setIsLoadingFilter(true)
         try{
             const response = await fetch(`${filterOptions.url}?tag=${filterOptions.params.tag}&platform=${filterOptions.params.platform}`, filterOptions)
             const data = await response.json()
@@ -62,11 +68,13 @@ const AppProvider = ({children}) => {
                 const gamesList = data.map((item) => {
                     const {id, title, platform, genre, thumbnail, short_description} = item
                     return {id, title, platform, genre, thumbnail, shortDesc:short_description}
-                })
+                }) 
                 setFilteredGameList(gamesList)     
+                setIsLoadingFilter(false)
             }
             else {
                 setFilteredGameList([])
+                setIsLoadingFilter(false)
             }
         }
         catch(error){
@@ -82,7 +90,7 @@ const AppProvider = ({children}) => {
         filterGames()
     }, [categoryList, platform])
 
-    return <AppContext.Provider value={{gameList, filteredGameList, isFiltered, setCategoryList, setPlatform}}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{gameList, filteredGameList, isFiltered, setCategoryList, setPlatform, isLoading, isLoadingFilter}}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContext = () => {
