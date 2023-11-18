@@ -39,6 +39,22 @@ export default function Sidebar()
         })
     }
 
+    const clearFilters = () => {
+        Array.from(categoryRef.current.children).map((item) => {
+            if(item.children[0].checked){
+                item.children[0].checked = false;
+            }
+        })
+        Array.from(platformRef.current.children).map((item) => {
+            console.log(item.children[0])
+            if(item.children[0].value == "All"){
+                item.children[0].checked = true
+            }
+        })
+        setCategoryList("mmorpg")
+        setPlatform("all")
+    }
+
     const Capitalize = (item) => {
         return item.charAt(0).toUpperCase() + item.slice(1);
     }
@@ -50,7 +66,10 @@ export default function Sidebar()
 
     
     return <div className="sidebar">
-        <h2>Categories</h2>
+        <div className="category-title">
+            <h2>Categories</h2>
+            <button onClick={clearFilters}>Clear filters</button>
+        </div>
         
         <div className="category-wrapper" ref={categoryRef}>
         {categories.map((item, index) => {
