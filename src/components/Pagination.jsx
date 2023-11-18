@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react"
+import { FaAngleLeft, FaAngleDoubleLeft, FaAngleRight, FaAngleDoubleRight } from 'react-icons/fa'
 
 export default function Pagination({totalPosts, postsPerPage, setCurrentPage, currentPage}) {
 
@@ -38,11 +39,11 @@ export default function Pagination({totalPosts, postsPerPage, setCurrentPage, cu
 
     return <>
     <div className="pages-wrapper">
-        <button className="page-btn" onClick={() => setCurrentPage(1)}>First page</button>
-        <button className="page-btn" onClick={() => prevPage()}>Previous</button>
+        <button className="page-btn" onClick={() => setCurrentPage(1)}><FaAngleDoubleLeft/></button>
+        <button className="page-btn" onClick={() => prevPage()}><FaAngleLeft/></button>
         <span><input type="number" name="pageNumber" className="pageNumber" onChange={changePage} onBlur={setDefaultPage} defaultValue="1" min="1" max={pages.length} ref={pageNumber}/> of {pages.length}</span>
-        <button className="page-btn" onClick={() => nextPage()}>Next</button>
-        <button className="page-btn" onClick={() => setCurrentPage(pages.length)}>Last page</button>
+        <button className="page-btn" onClick={() => nextPage()}><FaAngleRight/></button>
+        <button className="page-btn" onClick={() => setCurrentPage(pages.length)}><FaAngleDoubleRight/></button>
     </div>
     </>
 }

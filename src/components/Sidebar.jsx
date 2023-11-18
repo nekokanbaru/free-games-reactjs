@@ -1,5 +1,6 @@
 import { useGlobalContext } from "../context"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react"
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
 
 export default function Sidebar() 
 {
@@ -63,8 +64,8 @@ export default function Sidebar()
         </div>
         <a className="toggleCategories-btn" onClick={toggleShowMore}>
             {isShortened ? 
-            <span><img src="../src/assets/icons/arrow-up-solid.svg"></img>show less</span> : 
-            <span><img src="../src/assets/icons/arrow-down-solid.svg"></img>show more</span>}
+            <span><FaAngleUp/>show less</span> : 
+            <span><FaAngleDown/>show more</span>}
         </a>
 
         <h2>Platforms</h2>
