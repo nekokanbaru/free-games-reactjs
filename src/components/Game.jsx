@@ -29,7 +29,7 @@ export default function Game()
             {
                 return (
                 <div className="game-pagination">
-                    <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>
+                    {filteredGameList.length > gamesPerPage && <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>}
                     <div className="game-container">
                         {filteredGameList.slice(firstGameIndex, lastGameIndex).map((item) => {
                             const {id, title, platform, genre, thumbnail, shortDesc} = item;
@@ -48,7 +48,7 @@ export default function Game()
                             </div>   
                         })}
                     </div>
-                    <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>
+                    {filteredGameList.length > gamesPerPage && <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>}
                 </div>)
             }
             else {
