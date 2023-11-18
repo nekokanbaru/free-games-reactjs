@@ -1,3 +1,5 @@
+import {FaShoppingCart, FaHeart, FaUser} from 'react-icons/fa'
+
 
 export default function Navbar()
 {
@@ -13,9 +15,9 @@ export default function Navbar()
         </div>
         <div className="navbar-right list">
             <ul>
-                <li><img src="../src/assets/icons/shopping-cart.svg" alt="cart" /></li>
-                <li><img src="../src/assets/icons/heart.svg" alt="favorites" /></li>
-                <li><img src="../src/assets/icons/user.svg" alt="profile" /></li>
+                <li><FaShoppingCart size={25} className='navbar-icon'/></li>
+                <li><FaHeart size={25} className='navbar-icon'/></li>
+                <li><FaUser size={25} className='navbar-icon'/></li>
             </ul>
         </div>
     </div>
