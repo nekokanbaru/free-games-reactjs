@@ -15,9 +15,9 @@ export default function Navbar()
         </div>
         <div className="navbar-right list">
             <ul>
-                <li><FaShoppingCart/></li>
-                <li><FaHeart/></li>
-                <li><FaUser/></li>
+                <li><FaShoppingCart size={25} className='navbar-icon'/></li>
+                <li><FaHeart size={25} className='navbar-icon'/></li>
+                <li><FaUser size={25} className='navbar-icon'/></li>
             </ul>
         </div>
     </div>
