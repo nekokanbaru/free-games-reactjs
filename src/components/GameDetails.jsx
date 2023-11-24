@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import {useParams, Link} from 'react-router-dom'
 import '../styles/game-details.css'
 import Loading from './Loading'
@@ -9,6 +9,7 @@ export default function GameDetails()
     const {id} = useParams()
     const [loading, setLoading] = useState(false)
     const [game, setGame] = useState([])
+    const readMoreRef = useRef()
 
     const url = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${id}`;
     const options = {
@@ -68,6 +69,15 @@ export default function GameDetails()
         }
         getGame()
     }, [id])
+
+    useEffect(() => {
+        window.addEventListener("scroll", fadeOutText)
+    }, [])
+
+    const fadeOutText = () => {
+        if(readMoreRef)
+        readMoreRef.current.style.opacity = 1 - (window.scrollY*0.005);
+    }
     
     if(loading){
         return <Loading></Loading>
@@ -88,8 +98,8 @@ export default function GameDetails()
         description} = game
     
     if(game.screenshots)
-    return <div>
-            <div className="game-details-container" style={{
+    return <div >
+            <div className="game-details-container" onScroll={fadeOutText} style={{
             backgroundImage: `linear-gradient(to right, #161a1e 30%, #161a1e80), url(${screenshots[0].image})`
             }}>
                 <div className="game-details-wrapper">
@@ -98,7 +108,7 @@ export default function GameDetails()
                     <button className='btn'><a href={game_url}>Visit game site</a></button>
                     <p className='game-details-platform'>Available on: <span>{platform}</span></p>
                 </div>
-                <p className='read-more'>read more<FaArrowDown></FaArrowDown></p>
+                <p className='read-more' ref={readMoreRef}>read more<FaArrowDown></FaArrowDown></p>
             </div>
 
             <div className="game-more-details-wrapper">
