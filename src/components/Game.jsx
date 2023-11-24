@@ -3,6 +3,7 @@ import { useState, useRef} from "react";
 import { useGlobalContext } from "../context";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
+import {Link} from 'react-router-dom'
 
 export default function Game()
 {
@@ -43,7 +44,7 @@ export default function Game()
                                 
                                 <div className="game-info-btn">
                                     <h3>{genre}</h3>
-                                    <button>More details</button>
+                                    <Link to={`/games/${id}`}><button>More details</button></Link>
                                 </div>      
                             </div>   
                         })}

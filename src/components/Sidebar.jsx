@@ -68,7 +68,7 @@ export default function Sidebar()
     return <div className="sidebar">
         <div className="category-title">
             <h2>Categories</h2>
-            <button onClick={clearFilters}>Clear filters</button>
+            <button className="btn" onClick={clearFilters}>Clear filters</button>
         </div>
         
         <div className="category-wrapper" ref={categoryRef}>
