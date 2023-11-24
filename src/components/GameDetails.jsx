@@ -55,7 +55,6 @@ export default function GameDetails()
                         developer,
                         description
                     } 
-                    console.log(newGame)
                     setGame(newGame)
                 }
                 else {
@@ -103,7 +102,23 @@ export default function GameDetails()
             </div>
 
             <div className="game-more-details-wrapper">
+                <div className="description-wrapper">
+                    <p className="description-details">
+                        <span><b>Genre: </b>{genre}</span>
+                        <span><b>Release date: </b>{release_date}</span>
+                    </p>
+                    <div className="description">
+                        <p>{description}</p>
+                    </div>
+                    <p className="description-details bottom-description-details">
+                        <span><b>Publisher:</b> {publisher}</span>
+                        <span><b>Developer:</b> {developer}</span>
+                    </p>
+                </div>
 
+                <div className="carousel">
+                    <img src={screenshots[2].image} alt={title} />
+                </div>
             </div>
         </div>
    
