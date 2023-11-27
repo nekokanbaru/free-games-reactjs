@@ -239,7 +239,7 @@ export default function GameDetails()
                 </div>
 
                 <div className="carousel">
-                    {/* {console.log(screenshots)} */}
+                    <h3>Screenshots:</h3>
                         <div className="slider" ref={carouselRef}>
                             {screenshots.toReversed().map((item) => {
                                 return <div className="slide" key={item.id}>
