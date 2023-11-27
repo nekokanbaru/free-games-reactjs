@@ -75,7 +75,7 @@ export default function GameDetails()
     }, [])
 
     const fadeOutText = () => {
-        if(readMoreRef)
+        if(readMoreRef.current)
         readMoreRef.current.style.opacity = 1 - (window.scrollY*0.005);
     }
     
@@ -98,7 +98,8 @@ export default function GameDetails()
         description} = game
     
     if(game.screenshots)
-    return <div >
+    return <div>
+        {() => {window.removeEventListener("scroll", fadeOutText)}}
             <div className="game-details-container" onScroll={fadeOutText} style={{
             backgroundImage: `linear-gradient(to right, #161a1e 30%, #161a1e80), url(${screenshots[0].image})`
             }}>
@@ -132,6 +133,6 @@ export default function GameDetails()
                 </div>
             </div>
         </div>
-   
+    
     }
 }
