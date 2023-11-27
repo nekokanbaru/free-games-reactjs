@@ -245,6 +245,10 @@
     transform: scale(1.1);
   }
 
+  .carousel-btn:focus {
+    outline: none;
+  }
+
   .carousel-btn:hover {
     color:var(--color-primary);
   }
