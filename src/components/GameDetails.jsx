@@ -1,8 +1,9 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import {useParams, Link} from 'react-router-dom'
 import '../styles/game-details.css'
 import Loading from './Loading'
 import { FaArrowDown, FaArrowLeft, FaArrowUp, FaArrowRight } from 'react-icons/fa'
+import { func } from 'prop-types'
 
 export default function GameDetails()
 {
@@ -99,6 +100,10 @@ export default function GameDetails()
 
             let currSlide = 0
             btnNext.current.addEventListener("click", () => {
+                changeNext()
+            })
+
+            const changeNext = () => {
                 if(currSlide === 3){
                     return
                 }
@@ -111,9 +116,13 @@ export default function GameDetails()
                         item.style.transform = `translateX(${(index - currSlide) * 100}%)`
                     }
                 })
-            })
+            }
 
             btnPrev.current.addEventListener("click", () => {
+                changePrev()
+            })
+
+            const changePrev = () => {
                 if(currSlide === 0){
                     return
                 }
@@ -126,7 +135,21 @@ export default function GameDetails()
                         item.style.transform = `translateX(${(index - currSlide) * 100}%)`
                     }
                 })
-            })
+            }
+
+            const changeCarousel = (e) => {            
+                    if(e.key === "ArrowLeft"){
+                        changePrev()
+                    }
+                    else if(e.key === "ArrowRight"){
+                        changeNext()
+                    }         
+            }
+
+            document.addEventListener("keydown", changeCarousel)
+            return function cleanup() {
+                document.removeEventListener("keydown", changeCarousel)
+            }
         }
     }, [game])
 
@@ -142,6 +165,8 @@ export default function GameDetails()
             })
         }
     }
+
+    
 
     const toggleDescription = () => {
         setDescriptionTextToggle(!descriptionTextToggle)
