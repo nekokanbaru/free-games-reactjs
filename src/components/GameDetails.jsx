@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import {useParams, Link} from 'react-router-dom'
 import '../styles/game-details.css'
 import Loading from './Loading'
-import { FaArrowDown, FaArrowLeft, FaArrowUp } from 'react-icons/fa'
+import { FaArrowDown, FaArrowLeft, FaArrowUp, FaArrowRight } from 'react-icons/fa'
 
 export default function GameDetails()
 {
@@ -12,6 +12,9 @@ export default function GameDetails()
     const [descriptionText, setDescriptionText] = useState('');
     const [descriptionTextToggle, setDescriptionTextToggle] = useState(false)
     const readMoreRef = useRef()
+    const carouselRef = useRef()
+    const btnNext = useRef()
+    const btnPrev = useRef()
 
     const url = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${id}`;
     const options = {
@@ -85,6 +88,44 @@ export default function GameDetails()
             }  
         }    
         setDescriptionTextToggle(false)
+
+        if(carouselRef.current){
+            console.log(carouselRef.current.children)
+            Array.from(carouselRef.current.children).forEach((item, index) => {
+                if(item.className == "slide"){
+                    item.style.transform = `translateX(${index * 100}%)`
+                }
+            })
+
+            let currSlide = 0
+            btnNext.current.addEventListener("click", () => {
+                if(currSlide === 3){
+                    return
+                }
+                else {
+                    currSlide++
+                }
+                Array.from(carouselRef.current.children).forEach((item, index) => {
+                    if(item.className == "slide"){
+                        item.style.transform = `translateX(${(index - currSlide) * 100}%)`
+                    }
+                })
+            })
+
+            btnPrev.current.addEventListener("click", () => {
+                if(currSlide === 0){
+                    return
+                }
+                else {
+                    currSlide--
+                }
+                Array.from(carouselRef.current.children).forEach((item, index) => {
+                    if(item.className == "slide"){
+                        item.style.transform = `translateX(${(index - currSlide) * 100}%)`
+                    }
+                })
+            })
+        }
     }, [game])
 
     const toggleDescription = () => {
@@ -158,7 +199,16 @@ export default function GameDetails()
                 </div>
 
                 <div className="carousel">
-                    <img src={screenshots[2].image} alt={title} />
+                    {/* {console.log(screenshots)} */}
+                        <div className="slider" ref={carouselRef}>
+                            {screenshots.toReversed().map((item) => {
+                                return <div className="slide" key={item.id}>
+                                    <img src={item.image} alt="screenshot" />
+                                </div>
+                            })}
+                            <button className="carousel-btn btn-next" ref={btnNext}><FaArrowRight/></button>
+                            <button className="carousel-btn btn-prev" ref={btnPrev}><FaArrowLeft/></button>
+                        </div>
                 </div>
             </div>
         </div>

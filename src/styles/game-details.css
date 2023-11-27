@@ -204,3 +204,61 @@
 }
 
 /* game more details ends */
+
+/* image carousel starts */
+
+.slider {
+    width: 100%;
+    max-width: 800px;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slide {
+    width: 100%;
+    max-width: 800px;
+    height: 350px;
+    position: absolute;
+    transition: all 0.5s;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .carousel-btn {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    padding: 10px;
+    border: none;
+    z-index: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color:var(--color-secondary);
+  }
+  
+  .carousel-btn:active {
+    transform: scale(1.1);
+  }
+
+  .carousel-btn:hover {
+    color:var(--color-primary);
+  }
+  
+  .btn-prev {
+    top: 0%;
+    left: 0%;
+    background: linear-gradient(to left, transparent, #161a1e50 30%, #161a1e);
+  }
+  
+  .btn-next {
+    top: 0%;
+    right: 0%;
+    background: linear-gradient(to right, transparent, #161a1e50 30%, #161a1e);
+  }
+
+/* image carousel ends */
