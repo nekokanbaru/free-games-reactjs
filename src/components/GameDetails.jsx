@@ -142,7 +142,8 @@ export default function GameDetails()
                     </p>
                     <div className="description">
                         <p>
-                            {!descriptionTextToggle ? descriptionText + "..." : descriptionText}
+                            {/* the ... would appear even though there was no show less/show more button so check both descriptionTextToggle state AND description text length*/}
+                            {!descriptionTextToggle ? description.length > 900 ? descriptionText + "..." : descriptionText: descriptionText}
                             {description.length > 900 && <button className='description-show-more-btn' onClick={toggleDescription}>
                                 {descriptionTextToggle ? 
                                  <span><FaArrowUp></FaArrowUp>show less</span>:
