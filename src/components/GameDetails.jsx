@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import {useParams, Link} from 'react-router-dom'
 import '../styles/game-details.css'
 import Loading from './Loading'
-import { FaArrowDown } from 'react-icons/fa'
+import { FaArrowDown, FaArrowLeft } from 'react-icons/fa'
 
 export default function GameDetails()
 {
@@ -103,6 +103,7 @@ export default function GameDetails()
             backgroundImage: `linear-gradient(to right, #161a1e 30%, #161a1e80), url(${screenshots[0].image})`
             }}>
                 <div className="game-details-wrapper">
+                    <Link to={`/`} className='back-to-home'><FaArrowLeft></FaArrowLeft>Back to home</Link>
                     <h1>{title}</h1>
                     <p className='game-details-desc'>{shortDesc}</p>
                     <button className='btn'><a href={game_url}>Visit game site</a></button>
