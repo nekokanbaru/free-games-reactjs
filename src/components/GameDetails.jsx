@@ -15,6 +15,7 @@ export default function GameDetails()
     const carouselRef = useRef()
     const btnNext = useRef()
     const btnPrev = useRef()
+    const carouselIndicators = useRef()
 
     const url = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${id}`;
     const options = {
@@ -90,7 +91,6 @@ export default function GameDetails()
         setDescriptionTextToggle(false)
 
         if(carouselRef.current){
-            console.log(carouselRef.current.children)
             Array.from(carouselRef.current.children).forEach((item, index) => {
                 if(item.className == "slide"){
                     item.style.transform = `translateX(${index * 100}%)`
@@ -104,6 +104,7 @@ export default function GameDetails()
                 }
                 else {
                     currSlide++
+                    changeActiveCarousel(currSlide)
                 }
                 Array.from(carouselRef.current.children).forEach((item, index) => {
                     if(item.className == "slide"){
@@ -118,6 +119,7 @@ export default function GameDetails()
                 }
                 else {
                     currSlide--
+                    changeActiveCarousel(currSlide)
                 }
                 Array.from(carouselRef.current.children).forEach((item, index) => {
                     if(item.className == "slide"){
@@ -127,6 +129,19 @@ export default function GameDetails()
             })
         }
     }, [game])
+
+    const changeActiveCarousel = (currentIndex) => {
+        if(carouselIndicators.current){
+            Array.from(carouselIndicators.current.children).forEach((item, index) => {
+                if(index === currentIndex){
+                    item.className = 'active'
+                }
+                else {
+                    item.className = ''
+                }
+            })
+        }
+    }
 
     const toggleDescription = () => {
         setDescriptionTextToggle(!descriptionTextToggle)
@@ -208,6 +223,12 @@ export default function GameDetails()
                             })}
                             <button className="carousel-btn btn-next" ref={btnNext}><FaArrowRight/></button>
                             <button className="carousel-btn btn-prev" ref={btnPrev}><FaArrowLeft/></button>
+                        </div>
+                        <div ref={carouselIndicators} className="carousel-indicators">
+                            <span className='active'></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                 </div>
             </div>

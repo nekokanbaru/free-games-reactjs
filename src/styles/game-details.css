@@ -261,4 +261,26 @@
     background: linear-gradient(to right, transparent, #161a1e50 30%, #161a1e);
   }
 
+  .carousel-indicators {
+    width: 100%;
+    margin-top:15px;
+    display: flex;
+    justify-content: center;
+    gap:10px;
+  }
+
+  .carousel-indicators span {
+    display: block;
+    width:10px;
+    height: 10px;
+    background-color: var(--bg-primary-lighter);
+    border-radius: 50%;
+  }
+
+  .carousel-indicators span.active {
+    background-color: var(--color-highlight);
+  }
+
+
+
 /* image carousel ends */
