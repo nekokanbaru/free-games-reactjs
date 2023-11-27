@@ -151,6 +151,8 @@ export default function GameDetails()
                 document.removeEventListener("keydown", changeCarousel)
             }
         }
+
+        
     }, [game])
 
     const changeActiveCarousel = (currentIndex) => {
@@ -196,6 +198,8 @@ export default function GameDetails()
         developer,
         description} = game;
     
+        if(game.description)console.log(description)
+
     if(game.screenshots)
     return <div>
 
