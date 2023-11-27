@@ -295,3 +295,34 @@
 
 
 /* image carousel ends */
+
+
+/* system requirements starts */
+
+.system-requirements {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    justify-self: center;
+}
+
+.system-requirements h3 {
+    border-bottom:1px solid #fbfbfb40;
+    padding:20px 0;
+    margin:0;
+}
+
+.system-requirements span {
+    font-weight: 600;
+}
+
+.system-requirements ul {
+    list-style-type: none;
+    text-align: left;
+    border-bottom:1px solid #fbfbfb40;
+    padding:20px 50px;
+    margin:0;
+    margin-bottom: 50px;
+}
+
+/* system requirements starts */

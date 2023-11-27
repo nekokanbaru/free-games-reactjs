@@ -195,9 +195,6 @@ export default function GameDetails()
         game_url,
         developer,
         description} = game;
-
-        
-        
     
     if(game.screenshots)
     return <div>
@@ -255,6 +252,17 @@ export default function GameDetails()
                             <span></span>
                             <span></span>
                         </div>
+                </div>
+
+                <div className="system-requirements">
+                    <h3>System requirements:</h3>
+                    <ul>
+                        <li><span>OS: </span>{sys_req.os}</li>
+                        <li><span>Processor: </span>{sys_req.processor}</li>
+                        <li><span>Memory: </span>{sys_req.memory} RAM</li>
+                        <li><span>Graphics: </span>{sys_req.graphics}</li>
+                        <li><span>Storage: </span>{sys_req.storage}</li>
+                    </ul>
                 </div>
             </div>
         </div>
