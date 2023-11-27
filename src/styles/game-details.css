@@ -138,11 +138,12 @@
 
 .game-more-details-wrapper .carousel {
     padding:50px;
+    width:1000px;
 }
 
 .game-more-details-wrapper .carousel img {
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
 }
 
 .game-more-details-wrapper .description {
@@ -204,3 +205,93 @@
 }
 
 /* game more details ends */
+
+/* image carousel starts */
+
+.slider {
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slide {
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    position: absolute;
+    transition: all 0.5s;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel h3 {
+    text-align: left;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+  }
+  
+  .carousel-btn {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    padding: 10px;
+    border: none;
+    z-index: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color:var(--color-secondary);
+  }
+  
+  .carousel-btn:active {
+    transform: scale(1.1);
+  }
+
+  .carousel-btn:focus {
+    outline: none;
+  }
+
+  .carousel-btn:hover {
+    color:var(--color-primary);
+  }
+  
+  .btn-prev {
+    top: 0%;
+    left: 0%;
+    background: linear-gradient(to left, transparent, #161a1e50 30%, #161a1e);
+  }
+  
+  .btn-next {
+    top: 0%;
+    right: 0%;
+    background: linear-gradient(to right, transparent, #161a1e50 30%, #161a1e);
+  }
+
+  .carousel-indicators {
+    width: 100%;
+    margin-top:15px;
+    display: flex;
+    justify-content: center;
+    gap:10px;
+  }
+
+  .carousel-indicators span {
+    display: block;
+    width:10px;
+    height: 10px;
+    background-color: var(--bg-primary-lighter);
+    border-radius: 50%;
+  }
+
+  .carousel-indicators span.active {
+    background-color: var(--color-highlight);
+  }
+
+
+
+/* image carousel ends */

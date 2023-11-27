@@ -1,8 +1,9 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import {useParams, Link} from 'react-router-dom'
 import '../styles/game-details.css'
 import Loading from './Loading'
-import { FaArrowDown, FaArrowLeft, FaArrowUp } from 'react-icons/fa'
+import { FaArrowDown, FaArrowLeft, FaArrowUp, FaArrowRight } from 'react-icons/fa'
+import { func } from 'prop-types'
 
 export default function GameDetails()
 {
@@ -12,6 +13,10 @@ export default function GameDetails()
     const [descriptionText, setDescriptionText] = useState('');
     const [descriptionTextToggle, setDescriptionTextToggle] = useState(false)
     const readMoreRef = useRef()
+    const carouselRef = useRef()
+    const btnNext = useRef()
+    const btnPrev = useRef()
+    const carouselIndicators = useRef()
 
     const url = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${id}`;
     const options = {
@@ -85,7 +90,83 @@ export default function GameDetails()
             }  
         }    
         setDescriptionTextToggle(false)
+
+        if(carouselRef.current){
+            Array.from(carouselRef.current.children).forEach((item, index) => {
+                if(item.className == "slide"){
+                    item.style.transform = `translateX(${index * 100}%)`
+                }
+            })
+
+            let currSlide = 0
+            btnNext.current.addEventListener("click", () => {
+                changeNext()
+            })
+
+            const changeNext = () => {
+                if(currSlide === 3){
+                    return
+                }
+                else {
+                    currSlide++
+                    changeActiveCarousel(currSlide)
+                }
+                Array.from(carouselRef.current.children).forEach((item, index) => {
+                    if(item.className == "slide"){
+                        item.style.transform = `translateX(${(index - currSlide) * 100}%)`
+                    }
+                })
+            }
+
+            btnPrev.current.addEventListener("click", () => {
+                changePrev()
+            })
+
+            const changePrev = () => {
+                if(currSlide === 0){
+                    return
+                }
+                else {
+                    currSlide--
+                    changeActiveCarousel(currSlide)
+                }
+                Array.from(carouselRef.current.children).forEach((item, index) => {
+                    if(item.className == "slide"){
+                        item.style.transform = `translateX(${(index - currSlide) * 100}%)`
+                    }
+                })
+            }
+
+            const changeCarousel = (e) => {            
+                    if(e.key === "ArrowLeft"){
+                        changePrev()
+                    }
+                    else if(e.key === "ArrowRight"){
+                        changeNext()
+                    }         
+            }
+
+            document.addEventListener("keydown", changeCarousel)
+            return function cleanup() {
+                document.removeEventListener("keydown", changeCarousel)
+            }
+        }
     }, [game])
+
+    const changeActiveCarousel = (currentIndex) => {
+        if(carouselIndicators.current){
+            Array.from(carouselIndicators.current.children).forEach((item, index) => {
+                if(index === currentIndex){
+                    item.className = 'active'
+                }
+                else {
+                    item.className = ''
+                }
+            })
+        }
+    }
+
+    
 
     const toggleDescription = () => {
         setDescriptionTextToggle(!descriptionTextToggle)
@@ -158,7 +239,22 @@ export default function GameDetails()
                 </div>
 
                 <div className="carousel">
-                    <img src={screenshots[2].image} alt={title} />
+                    <h3>Screenshots:</h3>
+                        <div className="slider" ref={carouselRef}>
+                            {screenshots.toReversed().map((item) => {
+                                return <div className="slide" key={item.id}>
+                                    <img src={item.image} alt="screenshot" />
+                                </div>
+                            })}
+                            <button className="carousel-btn btn-next" ref={btnNext}><FaArrowRight/></button>
+                            <button className="carousel-btn btn-prev" ref={btnPrev}><FaArrowLeft/></button>
+                        </div>
+                        <div ref={carouselIndicators} className="carousel-indicators">
+                            <span className='active'></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                 </div>
             </div>
         </div>
