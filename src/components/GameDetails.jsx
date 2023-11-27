@@ -2,13 +2,15 @@ import { useEffect, useState, useRef } from 'react'
 import {useParams, Link} from 'react-router-dom'
 import '../styles/game-details.css'
 import Loading from './Loading'
-import { FaArrowDown, FaArrowLeft } from 'react-icons/fa'
+import { FaArrowDown, FaArrowLeft, FaArrowUp } from 'react-icons/fa'
 
 export default function GameDetails()
 {
     const {id} = useParams()
     const [loading, setLoading] = useState(false)
     const [game, setGame] = useState([])
+    const [descriptionText, setDescriptionText] = useState('');
+    const [descriptionTextToggle, setDescriptionTextToggle] = useState(false)
     const readMoreRef = useRef()
 
     const url = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${id}`;
@@ -27,7 +29,6 @@ export default function GameDetails()
                 const response = await fetch(url, options)
                 const data = await response.json()
                 if(data){
-                    console.log(data)
                     const {
                         title, 
                         thumbnail,
@@ -74,6 +75,23 @@ export default function GameDetails()
         window.addEventListener("scroll", fadeOutText)
     }, [])
 
+    useEffect(() => {
+      if(game.description){
+            if(game.description.length > 900){
+                setDescriptionText(game.description.slice(0, 900))
+            }
+            else {
+                setDescriptionText(game.description)
+            }  
+        }    
+        setDescriptionTextToggle(false)
+    }, [game])
+
+    const toggleDescription = () => {
+        setDescriptionTextToggle(!descriptionTextToggle)
+        !descriptionTextToggle ? setDescriptionText(game.description) : setDescriptionText(descriptionText.slice(0, 900))
+    }
+
     const fadeOutText = () => {
         if(readMoreRef.current)
         readMoreRef.current.style.opacity = 1 - (window.scrollY*0.005);
@@ -95,11 +113,14 @@ export default function GameDetails()
         genre,
         game_url,
         developer,
-        description} = game
+        description} = game;
+
+        
+        
     
     if(game.screenshots)
     return <div>
-        {() => {window.removeEventListener("scroll", fadeOutText)}}
+
             <div className="game-details-container" onScroll={fadeOutText} style={{
             backgroundImage: `linear-gradient(to right, #161a1e 30%, #161a1e80), url(${screenshots[0].image})`
             }}>
@@ -120,7 +141,14 @@ export default function GameDetails()
                         <span><b>Release date: </b>{release_date}</span>
                     </p>
                     <div className="description">
-                        <p>{description}</p>
+                        <p>
+                            {!descriptionTextToggle ? descriptionText + "..." : descriptionText}
+                            {description.length > 900 && <button className='description-show-more-btn' onClick={toggleDescription}>
+                                {descriptionTextToggle ? 
+                                 <span><FaArrowUp></FaArrowUp>show less</span>:
+                                 <span><FaArrowDown></FaArrowDown>show more</span>}
+                            </button>}
+                        </p>
                     </div>
                     <p className="description-details bottom-description-details">
                         <span><b>Publisher:</b> {publisher}</span>
