@@ -7,15 +7,14 @@ import {Link} from 'react-router-dom'
 
 export default function Game()
 {
-    const {isFiltered, filteredGameList, isLoading, isLoadingFilter} = useGlobalContext()
-    const [currentPage, setCurrentPage] = useState(1)
+    const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage} = useGlobalContext()
     const [gamesPerPage, setGamesPerPage] = useState(6)
 
     const lastGameIndex = currentPage * gamesPerPage;
     const firstGameIndex = lastGameIndex - gamesPerPage;
 
     useEffect(() => {
-        setCurrentPage(1)
+        setCurrentPage(currentPage)
     }, [filteredGameList.length])
 
     if(isLoading){
@@ -49,7 +48,7 @@ export default function Game()
                             </div>   
                         })}
                     </div>
-                    {filteredGameList.length > gamesPerPage && <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>}
+                    {filteredGameList.length > gamesPerPage && <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage}></Pagination>}
                 </div>)
             }
             else {
