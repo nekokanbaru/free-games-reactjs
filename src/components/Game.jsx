@@ -7,15 +7,21 @@ import {Link} from 'react-router-dom'
 
 export default function Game()
 {
-    const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage} = useGlobalContext()
+    const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage, lastPage} = useGlobalContext()
     const [gamesPerPage, setGamesPerPage] = useState(6)
 
     const lastGameIndex = currentPage * gamesPerPage;
     const firstGameIndex = lastGameIndex - gamesPerPage;
 
     useEffect(() => {
-        setCurrentPage(currentPage)
-    }, [filteredGameList.length])
+        //if the page that was left when we went back to home is greater than the number on pages when we change the filters, set the page back to one   
+        if(currentPage > lastPage){
+            setCurrentPage(1)
+        }
+        else {
+            setCurrentPage(currentPage)
+        }
+    }, [filteredGameList.length, lastPage])
 
     if(isLoading){
         return <Loading></Loading>
