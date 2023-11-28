@@ -9,6 +9,7 @@ const AppProvider = ({children}) => {
     const [categoryList, setCategoryList] = useState("mmorpg")
     const [platform, setPlatform] = useState("all")
     const [isLoadingFilter, setIsLoadingFilter] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
 
     const filterOptions = {
         method: 'GET',
@@ -52,7 +53,7 @@ const AppProvider = ({children}) => {
         filterGames()
     }, [categoryList, platform])
 
-    return <AppContext.Provider value={{filteredGameList, isFiltered, setCategoryList, setPlatform, isLoadingFilter}}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{filteredGameList, isFiltered, setCategoryList, setPlatform, isLoadingFilter, currentPage, setCurrentPage}}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContext = () => {
