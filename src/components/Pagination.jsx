@@ -4,7 +4,7 @@ import { useGlobalContext } from "../context"
 
 export default function Pagination ({totalPosts, postsPerPage}) {
 
-    const {setCurrentPage, currentPage} = useGlobalContext()
+    const {setCurrentPage, currentPage, setLastPage} = useGlobalContext()
 
     let pages = []
     const pageNumber = useRef()
@@ -38,6 +38,7 @@ export default function Pagination ({totalPosts, postsPerPage}) {
 
     useEffect(() => {
         pageNumber.current.value = currentPage
+        setLastPage(pages.length)
     }, [currentPage])
 
     return <>

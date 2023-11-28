@@ -197,8 +197,6 @@ export default function GameDetails()
         game_url,
         developer,
         description} = game;
-    
-        if(game.description)console.log(description)
 
     if(game.screenshots)
     return <div>
