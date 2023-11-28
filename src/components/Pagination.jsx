@@ -1,4 +1,4 @@
-import { useRef, useEffect, memo } from "react"
+import { useRef, useEffect} from "react"
 import { FaAngleLeft, FaAngleDoubleLeft, FaAngleRight, FaAngleDoubleRight } from 'react-icons/fa'
 import { useGlobalContext } from "../context"
 
