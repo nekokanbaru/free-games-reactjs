@@ -4,9 +4,9 @@ import { useRef, useState, useCallback, useEffect } from "react";
 
 export default function GameSearch() {
 
-    const {setFilteredGameList, platform, categoryList, setIsFiltered, setIsLoadingFilter} = useGlobalContext()
+    const {setFilteredGameList, platform, categoryList, setIsFiltered, searchTerm, setSearchTerm} = useGlobalContext()
     const searchInput = useRef()
-    const [searchTerm, setSearchTerm] = useState('')
+    
     
     const searchGame = () => {
         setSearchTerm(searchInput.current.value)

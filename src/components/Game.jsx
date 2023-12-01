@@ -8,7 +8,7 @@ import GameSearch from "./GameSearch";
 
 export default function Game()
 {
-    const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage, lastPage} = useGlobalContext()
+    const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage, lastPage, searchTerm} = useGlobalContext()
     const [gamesPerPage, setGamesPerPage] = useState(6)
 
     const lastGameIndex = currentPage * gamesPerPage;
@@ -16,13 +16,14 @@ export default function Game()
 
     useEffect(() => {
         //if the page that was left when we went back to home is greater than the number on pages when we change the filters, set the page back to one   
+        
         if(currentPage > lastPage){
             setCurrentPage(1)
         }
         else {
             setCurrentPage(currentPage)
         }
-    }, [filteredGameList.length, lastPage])
+    }, [filteredGameList.length, lastPage, searchTerm])
 
     if(isLoading){
         return <Loading></Loading>

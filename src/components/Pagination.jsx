@@ -4,7 +4,7 @@ import { useGlobalContext } from "../context"
 
 export default function Pagination ({totalPosts, postsPerPage}) {
 
-    const {setCurrentPage, currentPage, setLastPage} = useGlobalContext()
+    const {setCurrentPage, currentPage, setLastPage, searchTerm, lastPage} = useGlobalContext()
 
     let pages = []
     const pageNumber = useRef()
@@ -39,7 +39,7 @@ export default function Pagination ({totalPosts, postsPerPage}) {
     useEffect(() => {
         pageNumber.current.value = currentPage
         setLastPage(pages.length)
-    }, [currentPage])
+    }, [currentPage, searchTerm, pages])
 
     return <>
     <div className="pages-wrapper">

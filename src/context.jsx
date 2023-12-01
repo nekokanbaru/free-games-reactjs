@@ -11,6 +11,7 @@ const AppProvider = ({children}) => {
     const [isLoadingFilter, setIsLoadingFilter] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
     const [lastPage, setLastPage] = useState(1)
+    const [searchTerm, setSearchTerm] = useState('')
 
     const filterOptions = {
         method: 'GET',
@@ -58,7 +59,7 @@ const AppProvider = ({children}) => {
         filterGames()
     }, [categoryList, platform])
 
-    return <AppContext.Provider value={{filteredGameList,setFilteredGameList, isFiltered, setIsFiltered, categoryList, setCategoryList, platform, setPlatform, setIsLoadingFilter, isLoadingFilter, currentPage, setCurrentPage, lastPage, setLastPage}}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{filteredGameList,setFilteredGameList, isFiltered, setIsFiltered, categoryList, setCategoryList, platform, setPlatform, setIsLoadingFilter, isLoadingFilter, currentPage, setCurrentPage, lastPage, setLastPage, searchTerm, setSearchTerm}}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContext = () => {
