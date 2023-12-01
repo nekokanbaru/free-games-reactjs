@@ -242,7 +242,8 @@ export default function GameDetails()
                         <span><b>Developer:</b> {developer}</span>
                     </p>
                 </div>
-
+                
+                {screenshots.length > 0 &&
                 <div className="carousel">
                     <h3>Screenshots:</h3>
                         <div className="slider" ref={carouselRef}>
@@ -259,8 +260,9 @@ export default function GameDetails()
                                 return <span key={index.id}></span>
                             })}
                         </div>
-                </div>
-
+                </div>}
+                
+                {sys_req &&
                 <div className="system-requirements">
                     <h3>System requirements:</h3>
                     <ul>
@@ -270,7 +272,7 @@ export default function GameDetails()
                         <li><span>Graphics: </span>{sys_req.graphics}</li>
                         <li><span>Storage: </span>{sys_req.storage}</li>
                     </ul>
-                </div>
+                </div>}
             </div>
         </div>
     
