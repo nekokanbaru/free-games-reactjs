@@ -111,7 +111,7 @@ export default function GameDetails()
 
 
             const changeNext = () => {
-                if(currSlide === screenshotNumber-1){
+                if(currSlide === screenshotNumber - 1){
                     return
                 }
                 else {
@@ -157,8 +157,10 @@ export default function GameDetails()
                 let indicator = indicatorId.split('-')//indicator id is not a number, it's a string: 'indicator-1'
                 let id = parseInt(indicator[1])
                 if(id > currSlide){
-                    while(id != currSlide)
+                    while(id != currSlide){
                         changeNext()
+                        if(currSlide == screenshotNumber - 1)return
+                    }
                 }
                 else if(id < currSlide){
                     while(id != currSlide)
