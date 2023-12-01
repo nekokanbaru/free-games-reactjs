@@ -4,10 +4,11 @@ import { useGlobalContext } from "../context";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
 import {Link} from 'react-router-dom'
+import GameSearch from "./GameSearch";
 
 export default function Game()
 {
-    const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage, lastPage} = useGlobalContext()
+    const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage, lastPage, searchTerm} = useGlobalContext()
     const [gamesPerPage, setGamesPerPage] = useState(6)
 
     const lastGameIndex = currentPage * gamesPerPage;
@@ -15,13 +16,14 @@ export default function Game()
 
     useEffect(() => {
         //if the page that was left when we went back to home is greater than the number on pages when we change the filters, set the page back to one   
+        
         if(currentPage > lastPage){
             setCurrentPage(1)
         }
         else {
             setCurrentPage(currentPage)
         }
-    }, [filteredGameList.length, lastPage])
+    }, [filteredGameList.length, lastPage, searchTerm])
 
     if(isLoading){
         return <Loading></Loading>
@@ -31,10 +33,10 @@ export default function Game()
             if(isLoadingFilter){
                 return <Loading></Loading>
             }
-            if(filteredGameList.length > 0)
-            {
+            
                 return (
                 <div className="game-pagination">
+                    {<GameSearch></GameSearch>}
                     {filteredGameList.length > gamesPerPage && <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>}
                     <div className="game-container">
                         {filteredGameList.slice(firstGameIndex, lastGameIndex).map((item) => {
@@ -55,13 +57,11 @@ export default function Game()
                         })}
                     </div>
                     {filteredGameList.length > gamesPerPage && <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage}></Pagination>}
+                    {filteredGameList.length == 0 && <div className="game-container-notfound">
+                     <h2>No games matching the selected categories found </h2></div>}
+                 
                 </div>)
-            }
-            else {
-                return <div className="game-container-notfound">
-                    <h2>No games matching the selected categories found </h2>
-                </div>
-            }
+           
         }
     }
 }

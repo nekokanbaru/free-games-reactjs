@@ -1,0 +1,40 @@
+@font-face {
+    font-family: Roboto;
+    src: url(./assets/fonts/Roboto-Regular.ttf);
+  }
+  
+  :root {
+    --bg-primary: #161a1e;
+    --bg-primary-light: #6b6c6d29;
+    --bg-primary-lighter:#6b6c6d40;
+    --bg-gradient: linear-gradient(.25turn, #6b6c6d29 60%, #74553639);
+    --color-primary: #fbfbfb;
+    --color-highlight:#e58e27;
+    --color-secondary:#9a9a9a;
+    --font-primary: Roboto;
+  }
+
+/* game search starts */
+
+.game-search {
+    position: absolute;
+    right:0;
+    width: 15em;
+    height: 2em;
+    padding-left: 1em;
+    background-color: var(--bg-primary-light);
+    border: none;
+    color:var(--color-primary);
+    border-radius: 5px;
+  }
+
+.game-search:active {
+    outline: none;
+    border: none;
+}
+
+.game-search:focus {
+    outline: 1px solid var(--color-highlight);
+}
+  
+  /* game search ends */

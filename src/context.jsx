@@ -6,17 +6,18 @@ const AppContext = React.createContext()
 const AppProvider = ({children}) => {
     const [filteredGameList, setFilteredGameList] = useState([])
     const [isFiltered, setIsFiltered] = useState(false)
-    const [categoryList, setCategoryList] = useState("mmorpg")
+    const [categoryList, setCategoryList] = useState("")
     const [platform, setPlatform] = useState("all")
     const [isLoadingFilter, setIsLoadingFilter] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
-    const [lastPage, setLastPage] = useState(1);
+    const [lastPage, setLastPage] = useState(1)
+    const [searchTerm, setSearchTerm] = useState('')
 
     const filterOptions = {
         method: 'GET',
     url: 'https://free-to-play-games-database.p.rapidapi.com/api/filter',
      params: {
-        tag: categoryList.length > 0 ? categoryList : 'mmorpg',
+        tag: categoryList,
         platform: platform
         },
      headers: {
@@ -30,7 +31,11 @@ const AppProvider = ({children}) => {
         setIsFiltered(true)
         setIsLoadingFilter(true)
         try{
-            const response = await fetch(`${filterOptions.url}?tag=${filterOptions.params.tag}&platform=${filterOptions.params.platform}`, filterOptions)
+            let response
+            if(categoryList.length > 0)
+                response = await fetch(`${filterOptions.url}?tag=${filterOptions.params.tag}&platform=${filterOptions.params.platform}`, filterOptions)
+            else 
+                response = await fetch(`${filterOptions.url}?tag=mmorpg&platform=${filterOptions.params.platform}`, filterOptions)
             const data = await response.json()
             if(data.length > 0) {
                 const gamesList = data.map((item) => {
@@ -54,7 +59,7 @@ const AppProvider = ({children}) => {
         filterGames()
     }, [categoryList, platform])
 
-    return <AppContext.Provider value={{filteredGameList, isFiltered, setCategoryList, setPlatform, isLoadingFilter, currentPage, setCurrentPage, lastPage, setLastPage}}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{filteredGameList,setFilteredGameList, isFiltered, setIsFiltered, categoryList, setCategoryList, platform, setPlatform, setIsLoadingFilter, isLoadingFilter, currentPage, setCurrentPage, lastPage, setLastPage, searchTerm, setSearchTerm}}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContext = () => {
