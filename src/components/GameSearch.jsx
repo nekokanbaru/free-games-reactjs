@@ -12,6 +12,10 @@ export default function GameSearch() {
         setSearchTerm(searchInput.current.value)
     }
 
+    useEffect(() => {
+        searchInput.current.value = searchTerm
+    }, [])
+
     const filterOptions = {
         method: 'GET',
     url: 'https://free-to-play-games-database.p.rapidapi.com/api/filter',
@@ -51,10 +55,15 @@ export default function GameSearch() {
                     const {id, title, platform, genre, thumbnail, short_description} = item
                     return {id, title, platform, genre, thumbnail, shortDesc:short_description}
                 })
+                if(searchTerm != ""){
                 const searchResult = gamesList.filter((item) => 
                     item.title.toLowerCase().includes(searchTerm.toLowerCase())
                 )
                 setFilteredGameList(searchResult)     
+                }
+                else {
+                    setFilteredGameList(gamesList)
+                }
             }
             else {
                 setFilteredGameList([])
