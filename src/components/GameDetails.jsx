@@ -154,7 +154,8 @@ export default function GameDetails()
             }
 
             const changeOnIndicator = (indicatorId) => {
-                let id = parseInt(indicatorId)
+                let indicator = indicatorId.split('-')//indicator id is not a number, it's a string: 'indicator-1'
+                let id = parseInt(indicator[1])
                 if(id > currSlide){
                     while(id != currSlide)
                         changeNext()
@@ -275,7 +276,7 @@ export default function GameDetails()
                         </div>
                         <div ref={carouselIndicators} className="carousel-indicators">
                             {screenshots.map((item, index) => {
-                                return <span key={item.id} id={`${index}`}></span>
+                                return <span key={item.id} id={`indicator-${index}`}></span>
                             })}
                         </div>
                 </div>}
