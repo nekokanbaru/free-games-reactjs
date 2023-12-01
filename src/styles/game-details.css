@@ -293,6 +293,15 @@
     background-color: var(--color-highlight);
   }
 
+  .carousel-indicators span:hover {
+    background-color: #e58e2750;
+    cursor: pointer;
+  }
+
+  .carousel-indicators span.active:hover {
+    background-color: var(--color-highlight);
+  }
+
 /* image carousel ends */
 
 
