@@ -10,6 +10,7 @@ export default function Game()
 {
     const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage, lastPage, searchTerm} = useGlobalContext()
     const [gamesPerPage, setGamesPerPage] = useState(6)
+    const searchInputRef = useRef()
 
     const lastGameIndex = currentPage * gamesPerPage;
     const firstGameIndex = lastGameIndex - gamesPerPage;
@@ -24,6 +25,7 @@ export default function Game()
             setCurrentPage(currentPage)
         }
     }, [filteredGameList.length, lastPage, searchTerm])
+
 
     if(isLoading){
         return <Loading></Loading>
