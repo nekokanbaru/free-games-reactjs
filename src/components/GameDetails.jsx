@@ -109,6 +109,7 @@ export default function GameDetails()
                 changeNext()
             })
 
+
             const changeNext = () => {
                 if(currSlide === screenshotNumber-1){
                     return
@@ -151,6 +152,23 @@ export default function GameDetails()
                         changeNext()
                     }         
             }
+
+            const changeOnIndicator = (indicatorId) => {
+                let id = parseInt(indicatorId)
+                if(id > currSlide){
+                    while(id != currSlide)
+                        changeNext()
+                }
+                else if(id < currSlide){
+                    while(id != currSlide)
+                        changePrev()
+                }
+            }
+
+            
+            Array.from(carouselIndicators.current.children).forEach((item) => {
+                item.addEventListener("click", () => {changeOnIndicator(item.id)})
+            })
 
             document.addEventListener("keydown", changeCarousel)
             return function cleanup() {
@@ -256,8 +274,8 @@ export default function GameDetails()
                             <button className="carousel-btn btn-prev" ref={btnPrev}><FaArrowLeft/></button>
                         </div>
                         <div ref={carouselIndicators} className="carousel-indicators">
-                            {screenshots.map((index) => {
-                                return <span key={index.id}></span>
+                            {screenshots.map((item, index) => {
+                                return <span key={item.id} id={`${index}`}></span>
                             })}
                         </div>
                 </div>}
