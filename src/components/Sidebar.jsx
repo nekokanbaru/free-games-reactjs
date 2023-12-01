@@ -90,12 +90,11 @@ export default function Sidebar()
         <h2>Platforms</h2>
         <div className="platform-wrapper"  ref={platformRef}>
         {platforms.map((item, index) => {
-            return <>
-            <div className="sidebar-category" key={index}>
+            return <div className="sidebar-category" key={index}>
                 <input onChange={updateCheckedPlatforms} type="radio" value={item} id={item} name='platform'/>
                 <label htmlFor={item}>{item}</label>
             </div>
-            </>
+            
         })}
         </div>
     </div>
