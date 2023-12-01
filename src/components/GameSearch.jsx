@@ -69,6 +69,6 @@ export default function GameSearch() {
         filterGames()
     }, [searchTerm])
 
-    return <input type="text" className="game-search" onChange={searchGame} ref={searchInput}></input>
+    return <input type="text" className="game-search" onChange={searchGame} ref={searchInput} placeholder="search by title..."></input>
 
 }

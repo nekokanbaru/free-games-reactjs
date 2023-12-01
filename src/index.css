@@ -377,6 +377,7 @@ body {
 .game-pagination {
   padding-bottom: 10%;
   margin-top:5%;
+  position: relative;
 }
 
 .pages-wrapper {
