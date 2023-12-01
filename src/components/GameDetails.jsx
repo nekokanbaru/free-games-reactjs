@@ -12,6 +12,7 @@ export default function GameDetails()
     const [game, setGame] = useState([])
     const [descriptionText, setDescriptionText] = useState('');
     const [descriptionTextToggle, setDescriptionTextToggle] = useState(false)
+    const [screenshotNumber, setScreenshotNumber] = useState(3)
     const readMoreRef = useRef()
     const carouselRef = useRef()
     const btnNext = useRef()
@@ -90,6 +91,11 @@ export default function GameDetails()
             }  
         }    
         setDescriptionTextToggle(false)
+        if(game.screenshots)
+        setScreenshotNumber(game.screenshots.length)
+
+        if(carouselIndicators.current)
+            carouselIndicators.current.children[0].classList.add("active")
 
         if(carouselRef.current){
             Array.from(carouselRef.current.children).forEach((item, index) => {
@@ -104,7 +110,7 @@ export default function GameDetails()
             })
 
             const changeNext = () => {
-                if(currSlide === 3){
+                if(currSlide === screenshotNumber-1){
                     return
                 }
                 else {
@@ -249,10 +255,9 @@ export default function GameDetails()
                             <button className="carousel-btn btn-prev" ref={btnPrev}><FaArrowLeft/></button>
                         </div>
                         <div ref={carouselIndicators} className="carousel-indicators">
-                            <span className='active'></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            {screenshots.map((index) => {
+                                return <span key={index.id}></span>
+                            })}
                         </div>
                 </div>
 
