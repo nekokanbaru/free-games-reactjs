@@ -170,6 +170,25 @@
     margin: 5px 0;
 }
 
+.game-more-details-description{
+  max-height: 400px;
+  overflow: hidden;
+  -webkit-transition: all 1s; 
+  -moz-transition: all 1s; 
+  -ms-transition: all 1s; 
+  -o-transition: all 1s; 
+  transition: all 1s; 
+}
+
+.description-show-more-animation{
+  max-height: 1500px;
+  -webkit-transition: all 1s; 
+  -moz-transition: all 1s; 
+  -ms-transition: all 1s; 
+  -o-transition: all 1s; 
+  transition: all 1s; 
+}
+
 .bottom-description-details {
     flex-direction: column;
     align-items: flex-start;
