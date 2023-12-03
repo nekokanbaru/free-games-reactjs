@@ -74,8 +74,8 @@ export default function Sidebar()
             <button className="btn" onClick={clearFilters}>Clear filters</button>
         </div>
         
-        <div className="category-wrapper" ref={categoryRef}>
-            <div className="category-animation-wrapper">
+        <div className="category-wrapper" >
+        <div className="category-animation-wrapper" ref={categoryRef}>
         {categories.map((item, index) => {
             return (
             <div className="sidebar-category" key={index}>
