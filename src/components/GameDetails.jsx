@@ -18,6 +18,7 @@ export default function GameDetails()
     const btnNext = useRef()
     const btnPrev = useRef()
     const carouselIndicators = useRef()
+    const gameDetailsDescRef = useRef()
 
     const url = `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${id}`;
     const options = {
@@ -200,6 +201,7 @@ export default function GameDetails()
     const toggleDescription = () => {
         setDescriptionTextToggle(!descriptionTextToggle)
         !descriptionTextToggle ? setDescriptionText(game.description) : setDescriptionText(descriptionText.slice(0, 900))
+        gameDetailsDescRef.current.classList.toggle('description-show-more-animation')
     }
 
     const fadeOutText = () => {
@@ -248,6 +250,7 @@ export default function GameDetails()
                         <span><b>Release date: </b>{release_date}</span>
                     </p>
                     <div className="description">
+                        <div className='game-more-details-description'  ref={gameDetailsDescRef}>
                         <p>
                             {/* the ... would appear even though there was no show less/show more button so check both descriptionTextToggle state AND description text length*/}
                             {!descriptionTextToggle ? description.length > 900 ? descriptionText + "..." : descriptionText: descriptionText}
@@ -257,6 +260,7 @@ export default function GameDetails()
                                  <span><FaArrowDown></FaArrowDown>show more</span>}
                             </button>}
                         </p>
+                        </div>
                     </div>
                     <p className="description-details bottom-description-details">
                         <span><b>Publisher:</b> {publisher}</span>

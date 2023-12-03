@@ -12,6 +12,7 @@ export default function Sidebar()
     const platforms = ['PC', 'Browser', 'All']
     const categoryRef = useRef()
     const platformRef = useRef()
+    const sidebarCategoryRef = useRef()
 
     useEffect(() => {
         if(platformRef.current)
@@ -63,6 +64,7 @@ export default function Sidebar()
     const toggleShowMore = () => {
         setIsShortened(!isShortened)
         isShortened ? setCategories(categories.slice(0, 13)) : setCategories(categoriesSite.split(', '))
+        categoryRef.current.classList.toggle('show-more-animation')
     }
 
     
@@ -73,6 +75,7 @@ export default function Sidebar()
         </div>
         
         <div className="category-wrapper" ref={categoryRef}>
+            <div className="category-animation-wrapper">
         {categories.map((item, index) => {
             return (
             <div className="sidebar-category" key={index}>
@@ -80,7 +83,8 @@ export default function Sidebar()
                 <label htmlFor={index}>{Capitalize(item)}</label>
             </div>
             )
-        })}       
+        })}  
+        </div>     
         </div>
         <a className="toggleCategories-btn" onClick={toggleShowMore}>
             {isShortened ? 

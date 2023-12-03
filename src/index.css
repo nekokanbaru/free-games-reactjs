@@ -212,6 +212,20 @@ body {
   margin-bottom: 10px;
 }
 
+.category-wrapper {
+  max-height: 700px;
+  overflow: hidden;
+}
+
+.show-more-animation {
+  max-height: 2000px;
+  -webkit-transition: all 1s; 
+  -moz-transition: all 1s; 
+  -ms-transition: all 1s; 
+  -o-transition: all 1s; 
+  transition: all 1s; 
+}
+
 .sidebar-category label {
   cursor: pointer;
   -webkit-touch-callout: none;
