@@ -5,12 +5,15 @@ import Loading from "./Loading";
 import Pagination from "./Pagination";
 import {Link} from 'react-router-dom'
 import GameSearch from "./GameSearch";
+import {FaTimes} from "react-icons/fa"
+import '../styles/game-store.css'
 
 export default function Game()
 {
-    const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage, lastPage, searchTerm} = useGlobalContext()
+    const {isFiltered, filteredGameList, isLoading, isLoadingFilter, setCurrentPage, currentPage, lastPage, searchTerm, isCategoriesMenuVisible, setIsCategoriesMenuVisible} = useGlobalContext()
     const [gamesPerPage, setGamesPerPage] = useState(6)
     const searchInputRef = useRef()
+    const gamePaginationRef = useRef()
 
     const lastGameIndex = currentPage * gamesPerPage;
     const firstGameIndex = lastGameIndex - gamesPerPage;
@@ -26,6 +29,13 @@ export default function Game()
         }
     }, [filteredGameList.length, lastPage, searchTerm])
 
+    useEffect(() => {
+        if(gamePaginationRef.current && isCategoriesMenuVisible)
+        gamePaginationRef.current.classList.toggle('body-fixed')
+        else if(!isCategoriesMenuVisible && gamePaginationRef.current)
+        gamePaginationRef.current.classList.remove('body-fixed')
+    }, [isCategoriesMenuVisible, gamePaginationRef.current])
+
 
     if(isLoading){
         return <Loading></Loading>
@@ -37,7 +47,7 @@ export default function Game()
             }
             
                 return (
-                <div className="game-pagination">
+                <div className="game-pagination" ref={gamePaginationRef}>
                     {<GameSearch></GameSearch>}
                     {filteredGameList.length > gamesPerPage && <Pagination totalPosts={filteredGameList.length} postsPerPage={gamesPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}></Pagination>}
                     <div className="game-container">
