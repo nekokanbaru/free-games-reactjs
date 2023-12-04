@@ -1,0 +1,41 @@
+.game-pagination {
+    padding-bottom: 10%;
+    margin-top:5%;
+    position: relative;
+  }
+  
+  .pages-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    column-gap: 1em;
+  }
+  
+  .page-btn {
+    background-color: var(--bg-primary-light);
+    border: none;
+    padding:0.5em 1em;
+    color:var(--color-secondary);
+  }
+  
+  .page-btn:hover {
+    cursor: pointer;
+    color:var(--color-highlight);
+    /* opacity: 0.8; */
+  }
+  
+  .pageNumber {
+    background-color: transparent;
+    border: none;
+    color:var(--color-secondary);
+    width:3em;
+    outline: var(--bg-primary-light) solid 2px;
+    padding:0.5em;
+    margin-right: 1em;
+  }
+  
+  .pageNumber:focus-visible {
+    outline:var(--color-highlight) solid 1px;
+    border-radius: 2px;
+  }

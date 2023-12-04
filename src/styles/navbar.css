@@ -1,0 +1,26 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .list > ul{
+    list-style-type: none;
+    display: flex;
+    gap:30px;
+  }
+  
+  .list > ul li:hover {
+    cursor: pointer;
+    color: var(--color-highlight);
+  }
+  
+  .list img {
+    width:30px;
+    height: 30px;
+    fill:var(--color-primary);
+  }
+  
+  .navbar-icon:hover {
+    cursor: pointer;
+  }

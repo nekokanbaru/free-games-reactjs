@@ -1,4 +1,5 @@
 import {FaShoppingCart, FaHeart, FaUser} from 'react-icons/fa'
+import '../styles/navbar.css' 
 
 
 export default function Navbar()
