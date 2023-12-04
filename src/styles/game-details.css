@@ -354,3 +354,54 @@
 
 /* system requirements starts */
 
+@media only screen and (max-width:1200px){
+  .game-details-wrapper{
+    width: 60%;
+  }
+
+  /* html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+  } */
+  .slider {
+    width: 100%;
+    max-width: 600px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slide {
+    width: 100%;
+    max-width: 600px;
+    height: 500px;
+    position: absolute;
+    transition: all 0.5s;
+  }
+
+  .game-more-details-wrapper .carousel {
+    padding:0;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.game-more-details-wrapper .carousel img {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.carousel h3 {
+  align-self: flex-start;
+  margin-left: 2em;
+}
+
+.description-wrapper, .system-requirements {
+  box-sizing: border-box;
+  padding: 20px;
+}
+}
