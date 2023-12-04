@@ -10,6 +10,7 @@
     align-items: center;
     column-gap: 10px;
     column-gap: 1em;
+    margin-top: 1em;
   }
   
   .page-btn {
