@@ -26,14 +26,6 @@
   flex-grow: 999;
 }
 
-/* .game-container {
-    display:flex;
-    justify-content: space-between;
-    flex-wrap:wrap;
-    row-gap:40px;
-    padding:50px 30px;
-  } */
-
 .game-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -144,3 +136,22 @@
 }
 
 /* game search ends */
+
+
+/* tablet and below */
+
+@media only screen and (max-width:1200px) {
+  .game-container {
+    grid-template-columns: 1fr;
+    padding: 50px 30px;
+    row-gap: 40px;
+  }
+
+  .game-search-container {
+    padding:2em 0;
+  }
+}
+
+@media only screen and (max-width:768px){
+  
+}
