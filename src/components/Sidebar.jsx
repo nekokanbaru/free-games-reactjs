@@ -1,11 +1,11 @@
 import { useGlobalContext } from "../context"
 import { useEffect, useRef, useState } from "react"
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
+import { FaAngleDown, FaAngleUp, FaTimes } from 'react-icons/fa'
 import '../styles/sidebar.css'
 
 export default function Sidebar() 
 {
-    const {setCategoryList, setPlatform, isLoading, setSearchTerm} = useGlobalContext()
+    const {setCategoryList, setPlatform, isLoading, setSearchTerm, isCategoriesMenuVisible, setIsCategoriesMenuVisible} = useGlobalContext()
     //had to hard code the values because not all categories that exist inside the gameList object are valid categories for the API call
     const categoriesSite = "MMORPG, shooter, strategy, MOBA, racing, sports, sandbox, survival, turn-based, card, fighting, horror, action, tower-defense,social, open-world, PVP, PVE, pixel, voxel, zombie, first-person, third-Person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, battle-royale, MMO, MMOFPS, MMOTPS, 3D, 2D, anime, fantasy, sci-fi, action-rpg,  military, martial-arts, flight, low-spec, MMORTS"
     const [isShortened, setIsShortened] = useState(false)
@@ -14,11 +14,16 @@ export default function Sidebar()
     const categoryRef = useRef()
     const platformRef = useRef()
     const sidebarCategoryRef = useRef()
+    const sidebarRef = useRef()
 
     useEffect(() => {
         if(platformRef.current)
         platformRef.current.children[2].children[0].checked = true //make the platforms:"All" checked by default
     }, [isLoading])
+
+    useEffect(() => {
+        sidebarRef.current.classList.toggle('sidebar-visible')
+    }, [isCategoriesMenuVisible])
     
     if(!isLoading){
     //iterate over categories and check which ones are checked
@@ -31,6 +36,10 @@ export default function Sidebar()
         })
          //we need a string of categories that looks like this: 'mmorpg.strategy.shooter' for the filter api
         setCategoryList(categoryArray.join('.'));
+    }
+
+    const toggleCategoryVisible = () => {
+        setIsCategoriesMenuVisible(!isCategoriesMenuVisible)
     }
 
     const updateCheckedPlatforms = () => {
@@ -69,10 +78,11 @@ export default function Sidebar()
     }
 
     
-    return <div className="sidebar">
+    return <div className="sidebar" ref={sidebarRef}>
         <div className="category-title">
             <h2>Categories</h2>
             <button className="btn" onClick={clearFilters}>Clear filters</button>
+            {isCategoriesMenuVisible && <FaTimes className="close-category-menu" onClick={toggleCategoryVisible}></FaTimes>}
         </div>
         
         <div className="category-wrapper" >

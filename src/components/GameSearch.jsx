@@ -1,12 +1,14 @@
 import React from "react";
 import { useGlobalContext } from "../context";
 import { useRef, useState, useCallback, useEffect } from "react";
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch, FaHamburger} from 'react-icons/fa'
 
 export default function GameSearch() {
 
-    const {setFilteredGameList, platform, categoryList, setIsFiltered, searchTerm, setSearchTerm} = useGlobalContext()
+    const {setFilteredGameList, platform, categoryList, setIsFiltered, searchTerm, setSearchTerm, isCategoriesMenuVisible, setIsCategoriesMenuVisible} = useGlobalContext()
     const searchInput = useRef()
+    const categoriesMenuRef = useRef()
+    
     
     
     const searchGame = () => {
@@ -40,6 +42,10 @@ export default function GameSearch() {
           'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
         }
       };
+
+    const toggleCategoriesMenu = () => {
+        setIsCategoriesMenuVisible(!isCategoriesMenuVisible)
+    }
 
     const filterGames = useCallback(async () => {
         setIsFiltered(true)
@@ -79,9 +85,12 @@ export default function GameSearch() {
         filterGames()
     }, [searchTerm])
 
-    return <div className="game-search-container">
-        <input type="text" className="game-search" onChange={searchGame} ref={searchInput} placeholder="search by title..."></input>
-        <FaSearch className="game-search-icon"></FaSearch>
+    return <div className="game-hamburger-container">
+        <FaHamburger className="category-hamburger-menu" onClick={toggleCategoriesMenu}></FaHamburger>
+        <div className="game-search-container">
+            <input type="text" className="game-search" onChange={searchGame} ref={searchInput} placeholder="search by title..."></input>
+            <FaSearch className="game-search-icon"></FaSearch>
+        </div>
     </div>
 
 }

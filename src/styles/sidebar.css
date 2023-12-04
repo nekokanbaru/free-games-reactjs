@@ -129,3 +129,42 @@
     opacity: 0.8;
   }
   
+  @media only screen and (max-width:768px){
+    .sidebar {
+      display: none;
+    }
+
+    .sidebar-visible {
+      display:block;
+      position: fixed;
+      z-index: 999;
+      overflow-y: scroll;
+      left:0;
+      top:0;
+      padding-left: 30px;
+      border-radius: 0;
+      background: var(--bg-primary);
+      width:60%;
+      height:100svh;
+      box-shadow: 50px 0px 100px var(--bg-primary);
+    }
+
+    .body-fixed::before {
+      height: 100%;
+      content: "";
+      display: block;
+      width: 100%;
+      background-color: var(--bg-primary);
+      position: absolute;
+      top:0;
+      z-index: 999;
+      opacity: 0.8;
+    }
+
+    .close-category-menu {
+      width: 20px;
+      height: 20px;
+      color:var(--color-secondary);
+      z-index: 999;
+    }
+  }
