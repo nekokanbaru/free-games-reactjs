@@ -1,6 +1,7 @@
 import { useGlobalContext } from "../context"
 import { useEffect, useRef, useState } from "react"
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
+import '../styles/sidebar.css'
 
 export default function Sidebar() 
 {

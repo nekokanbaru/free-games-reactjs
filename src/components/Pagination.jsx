@@ -1,6 +1,7 @@
 import { useRef, useEffect} from "react"
 import { FaAngleLeft, FaAngleDoubleLeft, FaAngleRight, FaAngleDoubleRight } from 'react-icons/fa'
 import { useGlobalContext } from "../context"
+import "../styles/pagination.css"
 
 export default function Pagination ({totalPosts, postsPerPage}) {
 
