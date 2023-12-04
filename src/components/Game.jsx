@@ -30,13 +30,21 @@ export default function Game()
     }, [filteredGameList.length, lastPage, searchTerm])
 
     useEffect(() => {
-        if(gamePaginationRef.current && isCategoriesMenuVisible)
+        if(gamePaginationRef.current && isCategoriesMenuVisible){
         gamePaginationRef.current.classList.toggle('body-fixed')
-        else if(!isCategoriesMenuVisible && gamePaginationRef.current)
+        gamePaginationRef.current.addEventListener("click", toggleCategoryMenu)
+    }
+        else if(!isCategoriesMenuVisible && gamePaginationRef.current){
         gamePaginationRef.current.classList.remove('body-fixed')
+        gamePaginationRef.current.removeEventListener("click", toggleCategoryMenu)
+    }
+
     }, [isCategoriesMenuVisible, gamePaginationRef.current])
 
-
+    const toggleCategoryMenu = () => {
+        setIsCategoriesMenuVisible(!isCategoriesMenuVisible)
+    }
+    
     if(isLoading){
         return <Loading></Loading>
     }
