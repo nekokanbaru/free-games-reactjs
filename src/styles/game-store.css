@@ -16,9 +16,13 @@
 
 /* game search starts */
 
+.game-search-container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
 .game-search {
-    position: absolute;
-    right:0;
     width: 15em;
     height: 2em;
     padding-left: 1em;
@@ -27,6 +31,12 @@
     color:var(--color-primary);
     border-radius: 5px;
   }
+
+.game-search-icon {
+  position: absolute;
+  right:0.5em;
+  color:var(--color-secondary)
+}
 
 .game-search:active {
     outline: none;

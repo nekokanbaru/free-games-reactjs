@@ -1,6 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "../context";
 import { useRef, useState, useCallback, useEffect } from "react";
+import { FaSearch } from 'react-icons/fa'
 
 export default function GameSearch() {
 
@@ -78,6 +79,9 @@ export default function GameSearch() {
         filterGames()
     }, [searchTerm])
 
-    return <input type="text" className="game-search" onChange={searchGame} ref={searchInput} placeholder="search by title..."></input>
+    return <div className="game-search-container">
+        <input type="text" className="game-search" onChange={searchGame} ref={searchInput} placeholder="search by title..."></input>
+        <FaSearch className="game-search-icon"></FaSearch>
+    </div>
 
 }
