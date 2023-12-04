@@ -1,7 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "../context";
 import { useRef, useState, useCallback, useEffect } from "react";
-import { FaSearch, FaHamburger} from 'react-icons/fa'
+import { FaSearch, FaBars} from 'react-icons/fa'
 
 export default function GameSearch() {
 
@@ -86,7 +86,7 @@ export default function GameSearch() {
     }, [searchTerm])
 
     return <div className="game-hamburger-container">
-        <FaHamburger className="category-hamburger-menu" onClick={toggleCategoriesMenu}></FaHamburger>
+        <FaBars size={20} className="category-hamburger-menu" onClick={toggleCategoriesMenu}></FaBars>
         <div className="game-search-container">
             <input type="text" className="game-search" onChange={searchGame} ref={searchInput} placeholder="search by title..."></input>
             <FaSearch className="game-search-icon"></FaSearch>
