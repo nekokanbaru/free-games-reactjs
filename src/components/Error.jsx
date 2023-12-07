@@ -6,7 +6,7 @@ import background from '../assets/404.jpeg'
 export default function Error() {
     return <div className="error-wrapper">
         <div className="image-container">
-        <img src={background} alt="" />
+        <img src={background} alt="sylvanas" />
         <div className="image-shadow"></div>
         </div>
 
