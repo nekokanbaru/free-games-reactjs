@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import GameStore from './components/Gamestore'
 import { AppProvider } from './context'
 import GameDetails from './components/GameDetails'
+import Error from './components/Error'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<GameStore />}></Route>
           <Route path='/games/:id' element={<GameDetails/>}></Route>
+          <Route path='*' element={<Error />}></Route>
         </Routes>
       </Router>
     </AppProvider>
