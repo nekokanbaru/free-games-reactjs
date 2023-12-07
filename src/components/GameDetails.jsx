@@ -3,7 +3,7 @@ import {useParams, Link} from 'react-router-dom'
 import '../styles/game-details.css'
 import Loading from './Loading'
 import { FaArrowDown, FaArrowLeft, FaArrowUp, FaArrowRight } from 'react-icons/fa'
-import { func } from 'prop-types'
+import Error from './Error'
 
 export default function GameDetails()
 {
@@ -227,6 +227,7 @@ export default function GameDetails()
         developer,
         description} = game;
 
+    if(game.title != undefined){
     if(game.screenshots)
     return <div>
 
@@ -300,6 +301,9 @@ export default function GameDetails()
                 </div>}
             </div>
         </div>
-    
+    }
+    else {
+        return <Error></Error>
+    }
     }
 }

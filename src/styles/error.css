@@ -63,4 +63,9 @@
     .image-container{
         display: none;
     }
+
+    .error-wrapper {
+        background-color: var(--bg-primary);
+        background:linear-gradient(60deg, var(--bg-primary), var(--bg-primary-light), var(--bg-primary-lighter))
+    }
 }
