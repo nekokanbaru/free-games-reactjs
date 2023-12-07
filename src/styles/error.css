@@ -1,11 +1,21 @@
 
-.error-container {
+.error-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction:row;
     width:100%;
     height: 100svh;
     margin: 0 auto;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    overflow: hidden;
+}
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 40%;
 }
 
 .error-container h1 {
@@ -24,4 +34,38 @@
     height: 100%;
     margin-top: 1em;
     box-sizing: border-box;
+}
+
+.error-wrapper img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    left:0;
+}
+
+.image-container{
+    height: 100svh;
+    width: 60%;
+}
+
+.image-container::after {
+    box-shadow: inset -50px 0px 40px 10px black;
+    display: block;
+    content: '';
+    height: 100%;
+    width: 60%;
+    position: absolute;
+    top:0;
+}
+
+@media only screen and (max-width:768px){
+    .image-container{
+        display: none;
+    }
+
+    .error-wrapper {
+        background-color: var(--bg-primary);
+        background:linear-gradient(60deg, var(--bg-primary), var(--bg-primary-light), var(--bg-primary-lighter))
+    }
 }
