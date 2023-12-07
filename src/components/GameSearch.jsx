@@ -31,7 +31,7 @@ export default function GameSearch() {
         platform: platform
         },
      headers: {
-        'X-RapidAPI-Key': '3b5d4c36b8mshd5546e81fd09131p150cfdjsn8a485f973c61',
+        'X-RapidAPI-Key': import.meta.env.VITE_FREE_GAMES_KEY,
         'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
         }
 
@@ -42,7 +42,7 @@ export default function GameSearch() {
         url: 'https://free-to-play-games-database.p.rapidapi.com/api/games',
         params: {platform: 'pc'},
         headers: {
-          'X-RapidAPI-Key': '3b5d4c36b8mshd5546e81fd09131p150cfdjsn8a485f973c61',
+          'X-RapidAPI-Key': import.meta.env.VITE_FREE_GAMES_KEY,
           'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
         }
       };
