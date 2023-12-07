@@ -19,6 +19,10 @@ export default function GameSearch() {
         searchInput.current.value = searchTerm
     }, [])
 
+    useEffect(() => {
+        searchInput.current.value = searchTerm
+    }, [searchTerm])
+
     const filterOptions = {
         method: 'GET',
     url: 'https://free-to-play-games-database.p.rapidapi.com/api/filter',
