@@ -52,7 +52,7 @@
     text-align: left;
     margin-left: 10%;
     margin-top: auto;
-    width:40%;
+    width:60%;
 }
 
 .game-details-wrapper h1 {
@@ -69,6 +69,7 @@
 .game-details-desc {
     font-size: 1.2rem;
     padding-bottom: 50px;
+    max-width: 500px;
 }
 
 .back-to-home {
@@ -96,6 +97,7 @@
 .game-details-wrapper button {
     width: 70%;
     padding:10px 20px;
+    max-width: 300px;
 }
 
 .game-details-wrapper > .btn {

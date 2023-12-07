@@ -227,6 +227,8 @@ export default function GameDetails()
         developer,
         description} = game;
 
+        // if(game.screenshots) console.log(screenshots.length)
+
     if(game.title != undefined){
     if(game.screenshots)
     return <div>
