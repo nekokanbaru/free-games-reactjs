@@ -81,7 +81,7 @@ export default function Sidebar()
         <div className="category-title">
             <h2>Categories</h2>
             <button className="btn" onClick={clearFilters}>Clear filters</button>
-            {isCategoriesMenuVisible && <FaTimes className="close-category-menu" onClick={toggleCategoryVisible}></FaTimes>}
+            <FaTimes className="close-category-menu" onClick={toggleCategoryVisible}></FaTimes>
         </div>
         
         <div className="category-wrapper" >

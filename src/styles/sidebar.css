@@ -128,25 +128,30 @@
   .toggleCategories-btn span:hover {
     opacity: 0.8;
   }
+
+  .close-category-menu {
+    display: none;
+  }
   
   @media only screen and (max-width:768px){
     .sidebar {
-      display: none;
+      position: absolute;
+      left:-100%;
+      transition: all .4s ease-in-out;
+      background: var(--bg-primary);
+      box-shadow: 50px 0px 100px var(--bg-primary);
+      z-index: 999;
+      top:0;
+      width:60%;
     }
 
     .sidebar-visible {
-      display:block;
       position: fixed;
-      z-index: 999;
       overflow-y: scroll;
       left:0;
-      top:0;
       padding-left: 30px;
       border-radius: 0;
-      background: var(--bg-primary);
-      width:60%;
       height:100svh;
-      box-shadow: 50px 0px 100px var(--bg-primary);
     }
 
     .body-fixed::before {
@@ -162,6 +167,7 @@
     }
 
     .close-category-menu {
+      display: block;
       width: 20px;
       height: 20px;
       color:var(--color-secondary);
