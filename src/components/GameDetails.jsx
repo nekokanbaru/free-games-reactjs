@@ -229,12 +229,11 @@ export default function GameDetails()
 
 
     if(game.title != undefined){
-    if(game.screenshots)
     return <div>
 
-            <div className="game-details-container" onScroll={fadeOutText} style={{
-            backgroundImage: `linear-gradient(to right, #161a1e 30%, #161a1e80), url(${screenshots[0].image})`
-            }}>
+            <div className="game-details-container" onScroll={fadeOutText} style={game.screenshots.length > 0 ?{
+             backgroundImage: `linear-gradient(to right, #161a1e 30%, #161a1e80), url(${screenshots[0].image})`
+            }: {backgroundImage:`linear-gradient(to right, #161a1e 30%, #161a1e80)`}}>
                 <div className="game-details-wrapper">
                     <Link to={`/`} className='back-to-home'><FaArrowLeft></FaArrowLeft>Back to home</Link>
                     <h1>{title}</h1>
