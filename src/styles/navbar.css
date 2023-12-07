@@ -1,8 +1,8 @@
 .navbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    padding:1em 2em;
+    padding:0.5em 2em;
     box-sizing: border-box;
     width: 100%;
   }
@@ -10,4 +10,17 @@
   .navbar-icon:hover {
     cursor: pointer;
     opacity: 0.8;
+  }
+
+  .navbar h1 {
+    font-weight: 900;
+    font-style: italic;
+    /* color:var(--color-highlight); */
+    /* background:linear-gradient(90deg, var(--color-highlight), #e58e2790); */
+    background:linear-gradient(90deg, var(--color-highlight), var(--color-primary));
+    -webkit-background-clip:text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color:transparent;
+    letter-spacing: .1em;
   }
