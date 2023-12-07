@@ -1,7 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "../context";
 import { useRef, useState, useCallback, useEffect } from "react";
-import { FaSearch, FaBars} from 'react-icons/fa'
+import { FaSearch, FaBars, FaTimesCircle} from 'react-icons/fa'
 
 export default function GameSearch() {
 
@@ -51,6 +51,10 @@ export default function GameSearch() {
         setIsCategoriesMenuVisible(!isCategoriesMenuVisible)
     }
 
+    const clearSearchTerm = () => {
+        setSearchTerm("");
+    }
+
     const filterGames = useCallback(async () => {
         setIsFiltered(true)
         try{
@@ -93,7 +97,8 @@ export default function GameSearch() {
         <FaBars size={20} className="category-hamburger-menu" onClick={toggleCategoriesMenu}></FaBars>
         <div className="game-search-container">
             <input type="text" className="game-search" onChange={searchGame} ref={searchInput} placeholder="search by title..."></input>
-            <FaSearch className="game-search-icon"></FaSearch>
+            {searchTerm.length == 0 && <FaSearch className="game-search-icon"></FaSearch>}
+            {searchTerm.length > 0 && <FaTimesCircle className="game-search-icon" onClick={clearSearchTerm}></FaTimesCircle>}
         </div>
     </div>
 
