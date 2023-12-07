@@ -57,7 +57,6 @@ export default function Sidebar()
             }
         })
         Array.from(platformRef.current.children).map((item) => {
-            console.log(item.children[0])
             if(item.children[0].value == "All"){
                 item.children[0].checked = true
             }
